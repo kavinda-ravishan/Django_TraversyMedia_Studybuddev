@@ -5,5 +5,3 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('room/<str:pk>', views.room, name='room'),
 ]
-
-# str : string, pk : primary key
