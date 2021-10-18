@@ -3,9 +3,7 @@ from django.db import models
 from django.db.models.base import Model
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
-from django.db.models.fields.related import RECURSIVE_RELATIONSHIP_CONSTANT
-
-
+from django.db.models.fields.related import RECURSIVE_RELATIONSHIP_CONSTAN
 class Topic(models.Model):
     name = models.CharField(max_length=200)
 
@@ -20,6 +18,9 @@ class Room(models.Model):
     #participants =
     updated = models.DateTimeField(auto_now=True) # everytime save (or updated) the field
     created = models.DateTimeField(auto_now_add=True) # first time created the field
+
+    class Meta:
+        ordering = ['-updated', '-created'] # ('-' for reverse the order)
 
     def __str__(self):
         return self.name
