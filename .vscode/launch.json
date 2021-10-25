@@ -11,6 +11,13 @@
       "program": "${workspaceFolder}\\manage.py",
       "args": ["runserver", "8000"],
       "django": true
+    },
+    {
+      "name": "Launch Edge",
+      "request": "launch",
+      "type": "pwa-msedge",
+      "url": "http://localhost:8000",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
