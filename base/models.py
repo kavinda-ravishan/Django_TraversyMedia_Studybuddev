@@ -32,6 +32,5 @@ class Message(models.Model):
     def __str__(self):
         return self.body[0:50]
     
-
 # python .\manage.py makemigrations
 # python .\manage.py migrate
