@@ -11,10 +11,11 @@ def home(request):
         Q(description__icontains = q) 
         )
         # search 
-
+    
     topcs = Topic.objects.all()
+    room_count = rooms.count()
 
-    context = {'rooms': rooms, 'topics': topcs}
+    context = {'rooms': rooms, 'topics': topcs, 'room_count': room_count}
     return render(request, 'base/home.html', context)
 
 def room(request, pk):
@@ -22,7 +23,6 @@ def room(request, pk):
 
     context = {'room': room}
     return render(request, 'base/room.html', context)
-
 
 def createRoom(request):
     form = RoomForm()
