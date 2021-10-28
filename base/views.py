@@ -1,4 +1,3 @@
-from django.forms.widgets import Media
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db.models import Q
@@ -29,6 +28,10 @@ def loginPage(request):
 
     context = {}
     return render(request, 'base/login_register.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
