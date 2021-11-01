@@ -19,7 +19,7 @@ def loginPage(request):
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get('username')
+        username = request.POST.get('username').lower()
         password = request.POST.get('password')
 
         try:
@@ -44,6 +44,22 @@ def logoutUser(request):
 
 def registerPage(request):
     form = UserCreationForm()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False) # commit=False : for get the user (for email lower case)
+            user.username = user.username.lower()
+            user.save()
+
+            # log the user in
+            login(request, user)
+
+            return redirect('home')
+        else:
+            messages.error(request, 'Error occurred during registration.')
+
     context = {'form': form}
     return render(request, 'base/login_register.html', context)
 
