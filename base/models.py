@@ -12,7 +12,7 @@ class Room(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True) # database field (can Empty), form field (can Empty)
-    #participants =
+    participants = models.ManyToManyField(User, related_name='participant', blank=True)
     updated = models.DateTimeField(auto_now=True) # everytime save (or updated) the field
     created = models.DateTimeField(auto_now_add=True) # first time created the field
 
